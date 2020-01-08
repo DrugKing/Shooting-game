@@ -63,7 +63,7 @@ public class LauncherManager : MonoBehaviourPunCallbacks
             NoName.SetActive(true);
             NoRoom.SetActive(false);
             NoRoomName.SetActive(false);
-            NotEnough.SetActive(true);
+            NotEnough.SetActive(false);
             return;
         }
 
@@ -88,7 +88,7 @@ public class LauncherManager : MonoBehaviourPunCallbacks
             NoName.SetActive(false);
             NoRoom.SetActive(false);
             NoRoomName.SetActive(true);
-            NotEnough.SetActive(true);
+            NotEnough.SetActive(false);
             return;
         }
         else
@@ -193,7 +193,7 @@ public class LauncherManager : MonoBehaviourPunCallbacks
         NoName.SetActive(false);
         NoRoom.SetActive(true);
         NoRoomName.SetActive(false);
-        NotEnough.SetActive(true);
+        NotEnough.SetActive(false);
     }
 
     public override void OnJoinedRoom()
