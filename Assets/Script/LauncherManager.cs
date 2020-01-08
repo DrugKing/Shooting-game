@@ -40,6 +40,8 @@ public class LauncherManager : MonoBehaviourPunCallbacks
 
         cachedRoomList = new Dictionary<string, RoomInfo>();
         roomListGameobjects = new Dictionary<string, GameObject>();
+
+        PhotonNetwork.AutomaticallySyncScene = true;
     }
 
     // Update is called once per frame
