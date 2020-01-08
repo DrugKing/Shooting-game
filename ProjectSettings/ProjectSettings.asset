@@ -632,7 +632,7 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
-    Collab: 1
+    Collab: 0
     UNet: 1
   luminIcon:
     m_Name: 
@@ -653,10 +653,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: 6222b4d1-fe28-46fc-a134-a55a284a7c93
+  cloudProjectId: cfee5301-e066-4742-a5eb-05ad490ecd5f
   framebufferDepthMemorylessMode: 0
   projectName: Shooting Game
-  organizationId: ongkarhoong
+  organizationId: zorgon27
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
