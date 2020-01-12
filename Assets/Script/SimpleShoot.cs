@@ -29,7 +29,15 @@ public class SimpleShoot : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && Time.time>= nextTimeToFire) 
         {
             nextTimeToFire = Time.time + (1f / fireRate);
-            GetComponent<Animator>().SetTrigger("Fire");
+            if(name == "Handgun")
+            {
+                GetComponent<Animator>().SetTrigger("Fire");
+            }
+            if (name == "Shotgun")
+            {
+                GetComponent<Animation>().Play("Reload");
+                Shoot();
+            }
         }
     }
 
