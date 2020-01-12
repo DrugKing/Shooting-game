@@ -6,6 +6,7 @@ public class SimpleShoot : MonoBehaviour
 {
     public float damage = 10f;
     public float range = 50f;
+    public float fireRate = 15f;
     public GameObject bulletPrefab;
     public GameObject casingPrefab;
     public GameObject muzzleFlashPrefab;
@@ -15,6 +16,7 @@ public class SimpleShoot : MonoBehaviour
     public GameObject hitEffect;
 
     public float shotPower = 100f;
+    private float nextTimeToFire = 0f;
 
     void Start()
     {
@@ -24,8 +26,9 @@ public class SimpleShoot : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && Time.time>= nextTimeToFire) 
         {
+            nextTimeToFire = Time.time + (1f / fireRate);
             GetComponent<Animator>().SetTrigger("Fire");
         }
     }
