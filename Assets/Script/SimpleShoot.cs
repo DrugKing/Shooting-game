@@ -12,6 +12,7 @@ public class SimpleShoot : MonoBehaviour
     public Transform barrelLocation;
     public Transform casingExitLocation;
     public Camera fpsCamera;
+    public GameObject hitEffect;
 
     public float shotPower = 100f;
 
@@ -39,8 +40,8 @@ public class SimpleShoot : MonoBehaviour
         //Instantiate(bulletPrefab, barrelLocation.position, barrelLocation.rotation).GetComponent<Rigidbody>().AddForce(barrelLocation.forward * shotPower);
         tempFlash = Instantiate(muzzleFlashPrefab, barrelLocation.position, barrelLocation.rotation);
 
-        Destroy(tempFlash, 2.0f);
-        Destroy(bullet, 0.5f);
+        Destroy(tempFlash, 0.5f);
+        Destroy(bullet, 1f);
         //  Instantiate(casingPrefab, casingExitLocation.position, casingExitLocation.rotation).GetComponent<Rigidbody>().AddForce(casingExitLocation.right * 100f);
         RaycastHit hit;
         if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range))
@@ -50,7 +51,11 @@ public class SimpleShoot : MonoBehaviour
             if(Target!= null)
             {
                 Target.damaged(damage);
+                Destroy(bullet);
             }
+
+            GameObject Poof =Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
+            Destroy(Poof, 0.5f);
         }
     }
 
@@ -65,3 +70,8 @@ public class SimpleShoot : MonoBehaviour
 
 
 }
+//Keep this script for zombie when they attack the player (might used)
+/*if (_hit.collider.gameObject.CompareTag("Player"))
+                {
+                    _hit.collider.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.AllBuffered,10f); 
+                }    */

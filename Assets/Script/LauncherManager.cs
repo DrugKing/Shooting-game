@@ -35,13 +35,11 @@ public class LauncherManager : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        ActivatePanel(GameLauncherPanel.name);
-        ErrorPanel.SetActive(false);
-
         cachedRoomList = new Dictionary<string, RoomInfo>();
         roomListGameobjects = new Dictionary<string, GameObject>();
-
         PhotonNetwork.AutomaticallySyncScene = true;
+        ActivatePanel(GameLauncherPanel.name);
+        ErrorPanel.SetActive(false);        
     }
 
     // Update is called once per frame
@@ -49,11 +47,11 @@ public class LauncherManager : MonoBehaviourPunCallbacks
     { 
         
     }
-
-    void Awake()
+    
+    /*void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
-    }
+    }*/
     #endregion
 
     #region Public Methods

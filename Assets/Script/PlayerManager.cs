@@ -4,21 +4,42 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviourPunCallbacks
 {
+    [SerializeField]
+    GameObject playerPrefab;
+
+    public static PlayerManager instance;
+
     #region public methods
     // Start is called before the first frame update
     void Start()
     {
-        
+
+        if (PhotonNetwork.IsConnected)
+        {
+            if (playerPrefab != null)
+            {
+                int randomPoint = Random.Range(-20, 20);
+
+                PhotonNetwork.Instantiate(playerPrefab.name, new Vector3(randomPoint, 0, randomPoint), Quaternion.identity);
+            }
+        }
+    }
+    void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     #endregion
 
     #region Photon Callbacks
@@ -30,6 +51,16 @@ public class PlayerManager : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         Debug.Log(newPlayer.NickName + " joined to " + PhotonNetwork.CurrentRoom.Name + " " + PhotonNetwork.CurrentRoom.PlayerCount);
+    }
+
+    public override void OnLeftRoom()
+    {
+        SceneManager.LoadScene("GameLauncherScene");
+    }
+
+    public void LeaveRoom()
+    {
+        PhotonNetwork.LeaveRoom();
     }
     #endregion
 }
