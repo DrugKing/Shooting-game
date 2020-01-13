@@ -79,7 +79,8 @@ GameObject:
   - component: {fileID: 4960738142799421128}
   - component: {fileID: 1721672917407867441}
   - component: {fileID: 7683790237274005534}
-  - component: {fileID: 2558636889537207466}
+  - component: {fileID: 8261933181029456710}
+  - component: {fileID: 7591480266372528449}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: Untagged
@@ -191,7 +192,6 @@ MonoBehaviour:
   reloadTime: 3
   maxAmmoStorage: 30
   currentAmmoStorage: 0
-  reloading: 0
   bulletPrefab: {fileID: 8722183632238296656, guid: b05d2c530666156498f45e042d8cca02,
     type: 3}
   casingPrefab: {fileID: 2648420860260971563, guid: 5847a522742ab56449fb7c05308c0cf7,
@@ -203,8 +203,24 @@ MonoBehaviour:
   casingExitLocation: {fileID: 976161249173433577}
   fpsCamera: {fileID: 3213161144101165914}
   animator: {fileID: 4039689920281116460}
---- !u!64 &2558636889537207466
-MeshCollider:
+--- !u!54 &8261933181029456710
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141744321177032429}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &7591480266372528449
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -213,10 +229,10 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300000, guid: d63c91e11d9ebb6469488f1040be7d41, type: 3}
+  m_Radius: 24.698809
+  m_Height: 96.94919
+  m_Direction: 1
+  m_Center: {x: -13.317624, y: -35.200104, z: 2.6999998}
 --- !u!1 &1645137296042974818
 GameObject:
   m_ObjectHideFlags: 0
@@ -1324,7 +1340,8 @@ GameObject:
   - component: {fileID: 5774505383072461447}
   - component: {fileID: 5871718121149112789}
   - component: {fileID: 5888627295388328101}
-  - component: {fileID: 8088053846097618872}
+  - component: {fileID: 2290206032907097195}
+  - component: {fileID: 1257818872492225939}
   m_Layer: 0
   m_Name: Handgun
   m_TagString: Untagged
@@ -1391,7 +1408,6 @@ MonoBehaviour:
   reloadTime: 1
   maxAmmoStorage: 30
   currentAmmoStorage: 0
-  reloading: 0
   bulletPrefab: {fileID: 1122964723992546, guid: 8a41ccf7f50a0bb47bebb1aa010d8fd5,
     type: 3}
   casingPrefab: {fileID: 1482960508195586, guid: 91dcfdffdc6d38e47916b9c549e26dac,
@@ -1403,7 +1419,23 @@ MonoBehaviour:
   casingExitLocation: {fileID: 5781496670067530333}
   fpsCamera: {fileID: 3213161144101165914}
   animator: {fileID: 4039689920281116460}
---- !u!136 &8088053846097618872
+--- !u!54 &2290206032907097195
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5776420588703553585}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &1257818872492225939
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1413,10 +1445,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.25
-  m_Height: 1.1
-  m_Direction: 2
-  m_Center: {x: 0, y: 0.2, z: 0.25}
+  m_Radius: 0.62547
+  m_Height: 3.4529061
+  m_Direction: 1
+  m_Center: {x: -0.6457032, y: -0.5435984, z: 0.26147828}
 --- !u!1 &5776538157989340951
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,9 +17,11 @@ public class SimpleShoot : MonoBehaviour
 
     [Header("Ammo")]
     public int maxAmmo = 10;
+    [SerializeField]
     private int currentAmmo;
     public float reloadTime = 1f;
     public int maxAmmoStorage = 30;
+    [SerializeField]
     private int currentAmmoStorage;
     private bool reloading;
     private bool canshoot;
@@ -78,6 +80,13 @@ public class SimpleShoot : MonoBehaviour
             return;
         }
 
+
+        if (Input.GetKeyDown("r") && currentAmmoStorage > 0)
+        {
+            StartCoroutine(Reload());
+            return;
+        }
+
         if (Input.GetButtonDown("Fire1") && Time.time>= nextTimeToFire) 
         {
             nextTimeToFire = Time.time + (1f / fireRate);
@@ -92,7 +101,7 @@ public class SimpleShoot : MonoBehaviour
                 Shoot();
                 CasingRelease();
             }            
-        }        
+        }         
     }
 
     void Shoot()
@@ -155,24 +164,51 @@ public class SimpleShoot : MonoBehaviour
         casing.GetComponent<Rigidbody>().AddTorque(new Vector3(0, Random.Range(100f, 500f), Random.Range(10f, 1000f)), ForceMode.Impulse);
         Destroy(casing, 0.5f);
     }
-    //failed( might need some testing)
-    private void OnCollisionEnter(Collision collision)
+
+    void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.gameObject.CompareTag("Ammo"))
+        if (collision.collider.tag=="Ammo")
         {
-            if(currentAmmo >0 && currentAmmoStorage < maxAmmoStorage)
+            Pickup Find = collision.gameObject.GetComponent<Pickup>();
+            if(Find.WeaponAmmo == "Shotgun" && name == "Shotgun")
             {
-                currentAmmoStorage += maxAmmo;
-                if(currentAmmoStorage > maxAmmoStorage)
+                if (Find != null)
                 {
-                    currentAmmoStorage = maxAmmoStorage;
+                    if (currentAmmo > 0 && currentAmmoStorage < maxAmmoStorage)
+                    {
+                        currentAmmoStorage += Find.Ammo_Capacity;
+                        if (currentAmmoStorage > maxAmmoStorage)
+                        {
+                            currentAmmoStorage = maxAmmoStorage;
+                        }
+                    }
+                    else
+                    {
+                        StartCoroutine(Reload());
+                    }
+                    Destroy(collision.gameObject);
                 }
             }
-            else
+            if (Find.WeaponAmmo == "Handgun" && name == "Handgun")
             {
-                StartCoroutine(Reload());
+                if (Find != null)
+                {
+                    if (currentAmmo > 0 && currentAmmoStorage < maxAmmoStorage)
+                    {
+                        currentAmmoStorage += Find.Ammo_Capacity;
+                        if (currentAmmoStorage > maxAmmoStorage)
+                        {
+                            currentAmmoStorage = maxAmmoStorage;
+                        }
+                    }
+                    else
+                    {
+                        StartCoroutine(Reload());
+                    }
+                    Destroy(collision.gameObject);
+                }
             }
-            Destroy(collision.collider.gameObject);
+
         }
     }
 
@@ -185,10 +221,9 @@ public class SimpleShoot : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         if (currentAmmoStorage >0)
         {
-            currentAmmo = currentAmmoStorage;
+            currentAmmo += currentAmmoStorage;
             currentAmmoStorage -= currentAmmo;
         }
-        currentAmmo = maxAmmo;
         reloading = false;
     }
 }

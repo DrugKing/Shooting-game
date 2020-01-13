@@ -8,9 +8,9 @@ public class PelletHit : MonoBehaviour
     public GameObject pellet;
     public GameObject hitEffect;
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.gameObject.CompareTag("Enemy"))
+        if (collision.collider.tag =="Enemy")
         {
             target Target = collision.transform.GetComponent<target>();
             if (Target != null)

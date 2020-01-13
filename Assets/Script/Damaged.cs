@@ -42,7 +42,29 @@ public class Damaged : MonoBehaviourPunCallbacks
     {
         if (photonView.IsMine)
         {
-            PlayerManager.instance.LeaveRoom();
+            Debug.Log("he died");
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.tag == "Health")
+        {
+            Pickup Find = collision.gameObject.GetComponent<Pickup>();
+            if (Find.FirstKit == "firstaid" && name == "firstaid")
+            {
+                if (Find != null)
+                {
+                    if (health < startHealth)
+                    {
+                        health += Find.Healthpack;
+                        if(health >startHealth)
+                        {
+                            health = startHealth;
+                        }
+                    }
+                }
+            }
         }
     }
 }

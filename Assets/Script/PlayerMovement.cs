@@ -13,14 +13,13 @@ public class PlayerMovement : MonoBehaviour
     public Transform GroundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
-    private Rigidbody rb;
 
     Vector3 velocity;
     bool isGrounded;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+
     }
 
     // Update is called once per frame
@@ -47,13 +46,5 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);        
-    }
-
-    private void FixedUpdate()
-    {
-        if (velocity != Vector3.zero)
-        {
-            rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
-        }
     }
 }
